@@ -1,0 +1,8 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/vimercie/Projets/Pipex'
+mkdir -p obj
+cc -Wall -Wextra -Werror -c src/main.c -o obj/main.o
+make -C Libft
+cc obj/main.o Libft/libft.a -o pipex
+make: Leaving directory '/home/vimercie/Projets/Pipex'
+ 

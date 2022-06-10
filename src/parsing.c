@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vimercie <vimercie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/09 14:17:19 by vimercie          #+#    #+#             */
-/*   Updated: 2022/06/09 20:15:45 by vimercie         ###   ########lyon.fr   */
+/*   Created: 2022/06/09 17:33:10 by vimercie          #+#    #+#             */
+/*   Updated: 2022/06/09 17:44:14 by vimercie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
+#include "../inc/pipex.h"
 
-# define PIPEX_H
-
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <sys/types.h>
-# include <sys/wait.h>
-# include "../Libft/libft.h"
-
-typedef struct s_pipe
+int	parsing(int argc, char **argv)
 {
-	int	fd[2];
-	int	cpid;
-}				t_pipe;
+	char	**cmd_one;
 
-int	error_check(int argc, char **argv);
-
-#endif
+	if (argv[2] != NULL)
+		return (0);
+	cmd_one = ft_split(argv[2], ' ');
+	if (!cmd_one)
+		return (0);
+}
