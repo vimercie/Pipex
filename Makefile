@@ -7,12 +7,15 @@ OBJDIR=		obj
 INCDIR=		inc
 
 SRC=		main.c						\
+			parsing.c
 
 
 OBJ=		${addprefix ${OBJDIR}/,		\
 			${SRC:.c=.o}}
 
 INC=		${INCDIR}/pipex.h
+
+LIB=		Libft/libft.a
 
 CC=			cc
 
@@ -22,13 +25,16 @@ all:		${OBJDIR} ${NAME}
 
 ${NAME}:	${OBJ} ${INC}
 			make -C Libft
-			${CC} ${OBJ} Libft/libft.a -o ${NAME}
+			${CC} ${OBJ} ${LIB} -o ${NAME}
+
+lib:
+			make -C Libft
 
 ${OBJDIR}:
 			mkdir -p obj
 
-${OBJDIR}/%.o:	%.c ${INC}
-				${CC} ${CFLAGS} -c $< -o $@
+${OBJDIR}/%.o:	%.c ${INC} Makefile
+			${CC} ${CFLAGS} -c $< -o $@
 
 
 clean:

@@ -6,7 +6,7 @@
 /*   By: vimercie <vimercie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 17:33:10 by vimercie          #+#    #+#             */
-/*   Updated: 2022/06/09 17:44:14 by vimercie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/14 16:49:40 by vimercie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 int	parsing(int argc, char **argv)
 {
-	char	**cmd_one;
+	(void)argc;
+	int	fd;
 
-	if (argv[2] != NULL)
-		return (0);
-	cmd_one = ft_split(argv[2], ' ');
-	if (!cmd_one)
-		return (0);
+	fd = open(argv[1], O_RDONLY);
+	if (fd < 0)
+		perror("pipex");
+	close(fd);
+	return (0);
 }
