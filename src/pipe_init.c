@@ -6,17 +6,38 @@
 /*   By: vimercie <vimercie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 19:23:40 by vimercie          #+#    #+#             */
-/*   Updated: 2022/06/09 20:16:03 by vimercie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/15 18:30:28 by vimercie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
 
-int	pipe_init(int argc, char **argv, char **envp)
+int	pipe_loop(char **argv, t_pipe *p)
 {
-	t_pipe	pi;
+	if (p->id == 0)
+	{
+		
+	}
+}
 
-	if (pipe(pi.fd) == -1)
-		return (0);
-	pi.cpid = fork();
+int	pipe_init(int argc, char **argv)
+{
+	int		fd[2];
+	t_pipe	p;
+
+	pipe(fd);
+	p.id = fork();
+	p.count = argc - 3;
+	while (p.count > 0)
+	{
+		if (p.id == 0)
+		{
+			close(fd[1]);
+			dup2(fd[0], 0);
+			close(fd[0]);
+			exec_cmd();
+		}
+		else
+			pipe_loop(argc, &p);
+	}
 }
