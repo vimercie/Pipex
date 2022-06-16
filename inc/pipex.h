@@ -6,7 +6,7 @@
 /*   By: vimercie <vimercie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 14:17:19 by vimercie          #+#    #+#             */
-/*   Updated: 2022/06/14 16:42:37 by vimercie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/16 18:52:30 by vimercie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,15 @@
 
 typedef struct s_pipe
 {
-	int	fd[2];
-	int	cpid;
+	// int fd_in;
+	// int fd_out;
+	// char	**cmd;
+	int	id;
+	int	count;
 }				t_pipe;
 
 int	parsing(int argc, char **argv);
+int	pipe_init(int argc, char **argv);
 int	error_check(int argc, char **argv);
 
 #endif

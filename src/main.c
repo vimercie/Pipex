@@ -6,7 +6,7 @@
 /*   By: vimercie <vimercie@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 14:19:25 by vimercie          #+#    #+#             */
-/*   Updated: 2022/06/14 17:21:54 by vimercie         ###   ########lyon.fr   */
+/*   Updated: 2022/06/16 18:38:31 by vimercie         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,5 @@
 
 int	main(int argc, char **argv)
 {
-	// if (error_check(argc, argv))
-	// 	return (0);
-	parsing(argc, argv);
+	pipe_init(argc, argv);
 }
