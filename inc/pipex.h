@@ -27,8 +27,9 @@ typedef struct s_pipe
 	// int fd_in;
 	// int fd_out;
 	// char	**cmd;
+	int	fd[2];
 	int	id;
-	int	count;
+	int	n_cmd;
 }				t_pipe;
 
 int	parsing(int argc, char **argv);

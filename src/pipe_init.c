@@ -12,27 +12,16 @@
 
 #include "../inc/pipex.h"
 
-int	pipe_loop(char **argv, t_pipe *p)
-{
-	if (p->id == 0)
-	{
-		
-	}
-}
 
 int	pipe_init(int argc, char **argv)
 {
-	int		fd[2];
 	t_pipe	p;
 
-	// Pipe et fork dans la boucle (écris une seule fois)
-	pipe(fd);
-	// fd[0];
-	// fd[1];
-	p.id = fork();
-	p.count = argc - 3;
-	while (p.count > 0)
+	pipe(p.fd);
+	while (p.n_cmd < argc - 3)
 	{
+		p.id = fork();
+		p.n_cmd = 0;
 		if (p.id == 0)
 		{
 			close(fd[1]);
@@ -41,8 +30,12 @@ int	pipe_init(int argc, char **argv)
 			exec_cmd();
 		}
 		else
-			pipe_loop(argc, &p);
-			// close (fd[1]);
+		{
+			close(fd[0]);
+			dup2(fd[1], 1);
+			close(fd[1])
+			exec_cmd();
+		}
 	}
 }
 
