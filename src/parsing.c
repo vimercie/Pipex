@@ -12,38 +12,43 @@
 
 #include "../inc/pipex.h"
 
+int	ft_perror(char *s)
+{
+	perror(s);
+	exit(1);
+}
+
+int	file_parsing(int argc, char **argv)
+{
+	// tests oufile
+	if (access(argv[argc - 1], F_OK) != 0)
+		open(argv[argc - 1], O_RDWR | O_CREAT, 0644);
+	else
+	{
+		if (access(argv[argc - 1], W_OK) == 0)
+			open(argv[argc - 1], O_WRONLY);
+		else
+			ft_perror(argv[argc - 1]);
+	}
+	// tests infile
+	if (access(argv[1], F_OK) != 0)
+		ft_perror(argv[1]);
+	if (access(argv[1], R_OK) == 0)
+		open(argv[1], O_RDONLY);
+	else
+		ft_perror(argv[1]);
+	return (0);
+}
+
+// int	cmd_parsing(int	argc, char **argv)
+// {
+
+// }
+
 int	parsing(int argc, char **argv)
 {
-	int	infile_fd;
-	int	outfile_fd;
-
 	if (argc < 5)
 		return (1);
-	// tests outfile.
-	if (access(argv[argc - 1], F_OK) != 0)
-		outfile_fd = open(argv[argc - 1], O_CREAT, S_IRWXO);
-	else
-	{
-		if (access(argv[argc - 1], W_OK))
-			outfile_fd = open(argv[argc - 1], O_WRONLY);
-		else
-		{
-			perror("pipex");
-			return (1);
-		}
-	}
-	// test existence infile.
-	if (access(argv[1], F_OK) != 0)
-	{
-		perror("pipex");
-		return (1);
-	}
-	if (access(argv[1], R_OK))
-		infile_fd = open(argv[1], O_RDONLY);
-	else
-	{
-		perror("pipex");
-		return (1);
-	}
+	file_parsing(argc, argv);
 	return (0);
 }

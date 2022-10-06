@@ -16,9 +16,12 @@
 int	pipe_init(int argc, char **argv)
 {
 	t_pipe	p;
+	char	*buffer;
 
+	buffer = malloc(10 * sizeof(char));
 	p.n_cmd = 1;
-	while (p.n_cmd < argc - 3)
+	(void)argv;
+	if (argc == 5)
 	{
 		pipe(p.fd);
 		p.id = fork();
@@ -27,7 +30,8 @@ int	pipe_init(int argc, char **argv)
 			close(p.fd[0]);
 			dup2(p.fd[1], 1);
 			close(p.fd[1]);
-			exec_cmd(1ère commande -> argv[p.n_cmd]);
+			dprintf(1, "I'm the child process");
+			// exec_cmd(1ère commande -> argv[p.n_cmd]);
 		}
 		else
 		{
@@ -35,11 +39,40 @@ int	pipe_init(int argc, char **argv)
 			dup2(p.fd[0], 0);
 			close(p.fd[0]);
 			waitpid(p.id, NULL, 0);
-			exec_cmd(2ème commande -> argv[p.n_cmd + 1]);
+			read(0, buffer, 10);
+			dprintf(1, "%s, I'm the parent process", buffer);
+			// exec_cmd(2ème commande -> argv[p.n_cmd + 1]);
 		}
-		p.n_cmd += 1;
 	}
-
+	// Multiple pipes
+	// if (argc > 5)
+	// {
+	// 	while (p.n_cmd < argc - 3)
+	// 	{
+	// 		pipe(p.fd);
+	// 		p.id = fork();
+	// 		if (p.id == 0)
+	// 		{
+	// 			close(p.fd[0]);
+	// 			dup2(p.fd[1], 1);
+	// 			close(p.fd[1]);
+	// 			dprintf(1, "I'm the child process");
+	// 			// exec_cmd(1ère commande -> argv[p.n_cmd]);
+	// 		}
+	// 		else
+	// 		{
+	// 			close(p.fd[1]);
+	// 			dup2(p.fd[0], 0);
+	// 			close(p.fd[0]);
+	// 			waitpid(p.id, NULL, 0);
+	// 			read(p.fd[0], buffer, 10);
+	// 			dprintf(1, "%s, I'm the parent process", buffer);
+	// 			// exec_cmd(2ème commande -> argv[p.n_cmd + 1]);
+	// 		}
+	// 		p.n_cmd += 1;
+	// 	}
+	// }
+	return (0);
 }
 
 // fd[0] non utilisé au tout début

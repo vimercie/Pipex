@@ -12,7 +12,7 @@
 
 #include "../inc/pipex.h"
 
-int	main(int argc, char **argv)
+int	main(int argc, char *argv[])
 {
 	if (parsing(argc, argv) == 1)
 		return (0);

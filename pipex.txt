@@ -1,3 +1,0 @@
-- Parsing : retournera le nombre de pipes dans la commande (n-pipes)
-
-- Fork dans le fork ou pas ?

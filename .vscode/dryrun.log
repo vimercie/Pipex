@@ -1,9 +1,0 @@
-make --dry-run --keep-going --print-directory
-make: Entering directory `/Users/vimercie/Documents/vimercie_GH/Pipex'
-cc -Wall -Wextra -Werror -c src/main.c -o obj/main.o
-cc -Wall -Wextra -Werror -c src/parsing.c -o obj/parsing.o
-cc -Wall -Wextra -Werror -c src/pipe_init.c -o obj/pipe_init.o
-make -C Libft
-cc obj/main.o obj/parsing.o obj/pipe_init.o Libft/libft.a -o pipex
-make: Leaving directory `/Users/vimercie/Documents/vimercie_GH/Pipex'
- 
