@@ -7,7 +7,6 @@ OBJDIR=		obj
 INCDIR=		inc
 
 SRC=		main.c						\
-			error_check.c				\
 			parsing.c					\
 			pipe_init.c
 

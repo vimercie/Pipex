@@ -34,6 +34,5 @@ typedef struct s_pipe
 
 int	parsing(int argc, char **argv);
 int	pipe_init(int argc, char **argv);
-int	error_check(int argc, char **argv);
 
 #endif

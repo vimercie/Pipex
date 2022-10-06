@@ -19,16 +19,18 @@ int	parsing(int argc, char **argv)
 
 	if (argc < 5)
 		return (1);
-	// test existence outfile.
+	// tests outfile.
 	if (access(argv[argc - 1], F_OK) != 0)
 		outfile_fd = open(argv[argc - 1], O_CREAT, S_IRWXO);
-	// test accessibilité outfile.
-	if (access(argv[argc - 1], W_OK))
-		outfile_fd = open(argv[argc - 1]);
 	else
 	{
-		perror("pipex");
-		return (1);
+		if (access(argv[argc - 1], W_OK))
+			outfile_fd = open(argv[argc - 1], O_WRONLY);
+		else
+		{
+			perror("pipex");
+			return (1);
+		}
 	}
 	// test existence infile.
 	if (access(argv[1], F_OK) != 0)

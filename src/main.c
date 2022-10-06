@@ -14,5 +14,7 @@
 
 int	main(int argc, char **argv)
 {
+	if (parsing(argc, argv) == 1)
+		return (0);
 	pipe_init(argc, argv);
 }

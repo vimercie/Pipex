@@ -17,26 +17,29 @@ int	pipe_init(int argc, char **argv)
 {
 	t_pipe	p;
 
-	pipe(p.fd);
+	p.n_cmd = 1;
 	while (p.n_cmd < argc - 3)
 	{
+		pipe(p.fd);
 		p.id = fork();
-		p.n_cmd = 0;
 		if (p.id == 0)
 		{
-			close(fd[1]);
-			dup2(fd[0], 0);
-			close(fd[0]);
-			exec_cmd();
+			close(p.fd[0]);
+			dup2(p.fd[1], 1);
+			close(p.fd[1]);
+			exec_cmd(1ère commande -> argv[p.n_cmd]);
 		}
 		else
 		{
-			close(fd[0]);
-			dup2(fd[1], 1);
-			close(fd[1])
-			exec_cmd();
+			close(p.fd[1]);
+			dup2(p.fd[0], 0);
+			close(p.fd[0]);
+			waitpid(p.id, NULL, 0);
+			exec_cmd(2ème commande -> argv[p.n_cmd + 1]);
 		}
+		p.n_cmd += 1;
 	}
+
 }
 
 // fd[0] non utilisé au tout début
