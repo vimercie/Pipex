@@ -1,0 +1,361 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 3.81
+# Copyright (C) 2006  Free Software Foundation, Inc.
+# This is free software; see the source for copying conditions.
+# There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+# This program built for i386-apple-darwin11.3.0
+ 
+
+# Make data base, printed on Mon Oct  3 17:18:14 2022
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# makefile (from `Makefile', line 13)
+OBJ = ${addprefix ${OBJDIR}/, ${SRC:.c=.o}}
+# makefile (from `Makefile', line 7)
+INCDIR = inc
+# makefile (from `Makefile', line 9)
+SRC = main.c parsing.c 
+# environment
+VSCODE_LOG_NATIVE = false
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# automatic
+@F = $(notdir $@)
+# makefile
+CURDIR := /Users/vimercie/Documents/vimercie_GH/Pipex
+# makefile
+SHELL = /bin/sh
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# environment
+_ = /usr/bin/make
+# makefile (from `Makefile', line 22)
+CFLAGS = -Wall -Wextra -Werror
+# makefile (from `Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n000bjlm002wcx/T/vscode-ipc-791ae768-4f37-4900-9dd8-00266b320173.sock
+# environment
+VSCODE_CWD = /
+# environment
+Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.S3jfUBlGct/Render
+# environment
+PATH = /Users/vimercie/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/opt/X11/bin
+# environment
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# makefile (from `Makefile', line 3)
+VPATH = src/
+# environment
+VSCODE_LOG_STACK = false
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# makefile (from `Makefile', line 18)
+LIB = Libft/libft.a
+# default
+.FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
+# environment
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.P4qkU2rd4W/Listeners
+# automatic
+%F = $(notdir $%)
+# environment
+HOMEBREW_TEMP = /tmp/vimercie/Homebrew/Temp
+# environment
+ 
+DISPLAY = /private/tmp/com.apple.launchd.jo6kPvOUX7/org.xquartz:0
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+PWD = /Users/vimercie/Documents/vimercie_GH/Pipex
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /Users/vimercie
+# default
+MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
+# environment
+VSCODE_CODE_CACHE_PATH = /Users/vimercie/Library/Application Support/Code/CachedData/57fd6d0195bb9b9d1b49f6da5db789060795de47
+# environment
+LOGNAME = vimercie
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+ZSH = /Users/vimercie/.oh-my-zsh
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+XPC_FLAGS = 0x0
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+HOMEBREW_CACHE = /tmp/vimercie/Homebrew/Caches
+# environment
+SHLVL = 1
+# makefile (from `Makefile', line 20)
+CC = cc
+# default
+MAKE_VERSION := 3.81
+# environment
+USER = vimercie
+# makefile
+.DEFAULT_GOAL := all
+# makefile (from `Makefile', line 1)
+NAME = pipex
+# environment
+LESS = -R
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# default
+MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
+# makefile (from `Makefile', line 16)
+INC = ${INCDIR}/pipex.h
+# default
+.VARIABLES := 
+# environment
+TMPDIR = /var/folders/zz/zyxvpxvq6csfxvn_n000bjlm002wcx/T/
+# automatic
+*F = $(notdir $*)
+# environment
+VSCODE_IPC_HOOK = /Users/vimercie/Library/Application Support/Code/1.67.0-main.sock
+# makefile
+MAKEFLAGS = Rrqp
+# environment
+MFLAGS = -Rrqp
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000002.Electron
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# automatic
++F = $(notdir $+)
+# environment
+__CF_USER_TEXT_ENCODING = 0x1719D:0x0:0x0
+# environment
+COMMAND_MODE = unix2003
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# makefile (from `Makefile', line 5)
+OBJDIR = obj
+# environment
+PAGER = less
+# environment
+LC_ALL = C
+# environment
+SECURITYSESSIONID = 186b0
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# default
+.INCLUDE_DIRS = /usr/local/include
+# environment
+MAKELEVEL := 0
+# environment
+LANG = C
+# environment
+VSCODE_PID = 36267
+# variable set hash-table stats:
+# Load=80/1024=8%, Rehash=0, Collisions=3/120=2%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 16777229, inode 3248573): 10 files, no impossibilities.
+# src (device 16777229, inode 3317445): 7 files, no impossibilities.
+# inc (device 16777229, inode 3317439): No files, no impossibilities so far.
+
+# 17 files, no impossibilities in 3 directories.
+
+# Implicit Rules
+
+obj/%.o: %.c inc/pipex.h Makefile
+#  commands to execute (from `Makefile', line 37):
+	${CC} ${CFLAGS} -c $< -o $@
+	
+
+# 1 implicit rules, 0 (0.0%) terminal.
+
+# Files
+
+all: obj pipex
+#  Phony target (prerequisite of .PHONY).
+#  Command-line target.
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/4=0%
+
+.PHONY: all clean fclean re
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+obj/main.o: src/main.c inc/pipex.h Makefile
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `main'
+#  Last modified 2022-10-03 17:17:58
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := obj/main.o
+# automatic
+# % := 
+# automatic
+# * := main
+# automatic
+# + := src/main.c inc/pipex.h Makefile
+# automatic
+# | := 
+# automatic
+# < := src/main.c
+# automatic
+# ^ := src/main.c inc/pipex.h Makefile
+# automatic
+# ? := Makefile
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/14=7%
+#  commands to execute (from `Makefile', line 37):
+	${CC} ${CFLAGS} -c $< -o $@
+	
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-10-03 17:18:14
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+obj/parsing.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+inc/pipex.h:
+#  Implicit rule search has been done.
+#  Last modified 2022-10-03 17:11:41
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+fclean: clean
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 45):
+	${RM} ${NAME} libft.a
+	make fclean -C Libft
+	
+
+lib:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 31):
+	make -C Libft
+	
+
+# Not a target:
+src/main.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-10-03 17:17:57
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+obj:
+#  Implicit rule search has not been done.
+#  Last modified 2022-10-03 17:17:59
+#  File has been updated.
+#  Successfully updated.
+#  commands to execute (from `Makefile', line 34):
+	mkdir -p obj
+	
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+re: fclean all
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 41):
+	rm -rf ${OBJDIR}
+	make clean -C Libft
+	
+
+pipex: obj/main.o obj/parsing.o inc/pipex.h
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/4=0%
+#  commands to execute (from `Makefile', line 27):
+	make -C Libft
+	${CC} ${OBJ} ${LIB} -o ${NAME}
+	
+
+# files hash-table stats:
+# Load=15/1024=1%, Rehash=0, Collisions=0/55=0%
+# VPATH Search Paths
+
+# No `vpath' search paths.
+
+# General (`VPATH' variable) search path:
+# src
+
+# # of strings in strcache: 1
+# # of strcache buffers: 1
+# strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
+# strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
+
+# Finished Make data base on Mon Oct  3 17:18:14 2022
+
+ 

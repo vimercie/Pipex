@@ -1,0 +1,1 @@
+- outfile créé même si infile -> permission denied

@@ -14,12 +14,34 @@
 
 int	parsing(int argc, char **argv)
 {
-	int	fd;
+	int	infile_fd;
+	int	outfile_fd;
 
-	(void)argc;
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
+	if (argc < 5)
+		return (1);
+	// test existence outfile.
+	if (access(argv[argc - 1], F_OK) != 0)
+		outfile_fd = open(argv[argc - 1], O_CREAT, S_IRWXO);
+	// test accessibilité outfile.
+	if (access(argv[argc - 1], W_OK))
+		outfile_fd = open(argv[argc - 1]);
+	else
+	{
 		perror("pipex");
-	close(fd);
+		return (1);
+	}
+	// test existence infile.
+	if (access(argv[1], F_OK) != 0)
+	{
+		perror("pipex");
+		return (1);
+	}
+	if (access(argv[1], R_OK))
+		infile_fd = open(argv[1], O_RDONLY);
+	else
+	{
+		perror("pipex");
+		return (1);
+	}
 	return (0);
 }
