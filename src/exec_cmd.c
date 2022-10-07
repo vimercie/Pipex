@@ -45,6 +45,8 @@ char *get_path(char *cmd, char *envp[])
 		free(path);
 		path = add_cmd(path_array[i], cmd);
 	}
+	if (path_array[i] == NULL)
+		path = add_cmd(path_array[i], cmd);
 	return (path);
 }
 
@@ -58,38 +60,32 @@ char	**get_args(char **cmd)
 		i++;
 	args = ft_calloc(i + 1, sizeof(char *));
 	i = 0;
-	while (cmd[i + 1])
+	while (cmd[i])
 	{
-		args[i] = ft_strdup(cmd[i + 1]);
-		dprintf(1, "arg[%d] = %s\n", i, args[i]);
+		args[i] = ft_strdup(cmd[i]);
 		i++;
 	}
+	cmd[i] = NULL;
 	return (args);
 }
 
-int	exec_cmd(char *full_cmd, char *envp[])
+char	**exec_cmd(char *full_cmd, char *envp[])
 {
-	int		i;
 	int		n_arg;
 	char	**cmd;
 	char	*path;
 	char	**args;
 
-	i = 1;
 	n_arg = 1;
 	cmd = ft_split(full_cmd, ' ');
 	while (cmd[n_arg])
 		n_arg++;
-	while (i < n_arg)
-		i++;
 	path = get_path(cmd[0], envp);
+	if (path == NULL)
+		ft_perror("pipex");
 	args = get_args(cmd);
-	if (args[0] == NULL)
-	{
-		free(args);
-		args[0] = cmd[0];
-	}
+	cmd[0] = ft_strdup(path);
 	if (path != NULL)
 		execve(path, args, envp);
-	return (0);
+	return (cmd);
 }

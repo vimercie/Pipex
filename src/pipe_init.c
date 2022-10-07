@@ -17,6 +17,7 @@ int	pipe_init(int argc, char *argv[], char *envp[])
 {
 	t_pipe	p;
 	char	*buffer;
+	char	**cmd;
 
 	buffer = malloc(10 * sizeof(char));
 	p.n_cmd = 1;
@@ -29,19 +30,19 @@ int	pipe_init(int argc, char *argv[], char *envp[])
 		{
 			close(p.fd[0]);
 			dup2(p.fd[1], 1);
+			cmd = exec_cmd(argv[2], envp);
+			execve(cmd[0], cmd + 1, envp);
 			close(p.fd[1]);
-			dprintf(1, "I'm the child process\n");
-			exec_cmd(argv[2], envp);
 		}
 		else
 		{
 			close(p.fd[1]);
 			dup2(p.fd[0], 0);
-			close(p.fd[0]);
 			waitpid(p.id, NULL, 0);
 			read(0, buffer, 25);
-			dprintf(1, "%s, I'm the parent process\n", buffer);
-			exec_cmd(argv[3], envp);
+			cmd = exec_cmd(argv[3], envp);
+			execve(cmd[0], cmd + 1, envp);
+			close(p.fd[0]);
 		}
 	}
 	// Multiple pipes
