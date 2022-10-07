@@ -18,7 +18,7 @@ int	ft_perror(char *s)
 	exit(1);
 }
 
-int	file_parsing(int argc, char **argv)
+int	file_parsing(int argc, char *argv[])
 {
 	// tests oufile
 	if (access(argv[argc - 1], F_OK) != 0)
@@ -39,11 +39,6 @@ int	file_parsing(int argc, char **argv)
 		ft_perror(argv[1]);
 	return (0);
 }
-
-// int	cmd_parsing(int	argc, char **argv)
-// {
-
-// }
 
 int	parsing(int argc, char **argv)
 {

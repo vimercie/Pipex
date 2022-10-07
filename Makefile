@@ -8,7 +8,8 @@ INCDIR=		inc
 
 SRC=		main.c						\
 			parsing.c					\
-			pipe_init.c
+			pipe_init.c					\
+			exec_cmd.c
 
 
 OBJ=		${addprefix ${OBJDIR}/,		\

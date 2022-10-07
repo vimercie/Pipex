@@ -13,7 +13,7 @@
 #include "../inc/pipex.h"
 
 
-int	pipe_init(int argc, char **argv)
+int	pipe_init(int argc, char *argv[], char *envp[])
 {
 	t_pipe	p;
 	char	*buffer;
@@ -30,8 +30,8 @@ int	pipe_init(int argc, char **argv)
 			close(p.fd[0]);
 			dup2(p.fd[1], 1);
 			close(p.fd[1]);
-			dprintf(1, "I'm the child process");
-			// exec_cmd(1ère commande -> argv[p.n_cmd]);
+			dprintf(1, "I'm the child process\n");
+			exec_cmd(argv[2], envp);
 		}
 		else
 		{
@@ -39,9 +39,9 @@ int	pipe_init(int argc, char **argv)
 			dup2(p.fd[0], 0);
 			close(p.fd[0]);
 			waitpid(p.id, NULL, 0);
-			read(0, buffer, 10);
-			dprintf(1, "%s, I'm the parent process", buffer);
-			// exec_cmd(2ème commande -> argv[p.n_cmd + 1]);
+			read(0, buffer, 25);
+			dprintf(1, "%s, I'm the parent process\n", buffer);
+			exec_cmd(argv[3], envp);
 		}
 	}
 	// Multiple pipes
