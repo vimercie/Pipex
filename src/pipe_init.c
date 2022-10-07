@@ -13,37 +13,37 @@
 #include "../inc/pipex.h"
 
 
-int	pipe_init(int argc, char *argv[], char *envp[])
+int	pipe_init(int argc, char *argv[], char *envp[], t_pipe p)
 {
-	t_pipe	p;
-	char	*buffer;
-	char	**cmd;
+	int		fd[2];
+	// char	**cmd;
 
-	buffer = malloc(10 * sizeof(char));
 	p.n_cmd = 1;
-	(void)argv;
 	if (argc == 5)
 	{
-		pipe(p.fd);
-		p.id = fork();
-		if (p.id == 0)
+		pipe(fd);
+		p.id1 = fork();
+		if (p.id1 == 0)
 		{
-			close(p.fd[0]);
-			dup2(p.fd[1], 1);
-			cmd = exec_cmd(argv[2], envp);
-			execve(cmd[0], cmd + 1, envp);
-			close(p.fd[1]);
+			dup2(fd[1], 1);
+			dup2(p.fd_infile, 0);
+			close(fd[0]);
+			close(fd[1]);
+			exec_cmd(argv[2], envp);
 		}
-		else
+		p.id2 = fork();
+		if(p.id2 == 0)
 		{
-			close(p.fd[1]);
-			dup2(p.fd[0], 0);
-			waitpid(p.id, NULL, 0);
-			read(0, buffer, 25);
-			cmd = exec_cmd(argv[3], envp);
-			execve(cmd[0], cmd + 1, envp);
-			close(p.fd[0]);
+			dup2(fd[0], 0);
+			dup2(p.fd_outfile, 1);
+			close(fd[0]);
+			close(fd[1]);
+			exec_cmd(argv[3], envp);
 		}
+		close(fd[0]);
+		close(fd[1]);
+		waitpid(p.id1, NULL, 0);
+		waitpid(p.id2, NULL, 0);
 	}
 	// Multiple pipes
 	// if (argc > 5)

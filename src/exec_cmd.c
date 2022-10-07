@@ -39,7 +39,7 @@ char *get_path(char *cmd, char *envp[])
 	free(path_start);
 	i = 0;
 	path = add_cmd(path_array[i], cmd);
-	while (access(path, F_OK) == -1 && path_array[i])
+	while (access(path, X_OK) == -1 && path_array[i])
 	{
 		i++;
 		free(path);
@@ -63,29 +63,26 @@ char	**get_args(char **cmd)
 	while (cmd[i])
 	{
 		args[i] = ft_strdup(cmd[i]);
+		dprintf(1, "args[%d] = %s\n", i, args[i]);
 		i++;
 	}
 	cmd[i] = NULL;
 	return (args);
 }
 
-char	**exec_cmd(char *full_cmd, char *envp[])
+int	exec_cmd(char *full_cmd, char *envp[])
 {
 	int		n_arg;
-	char	**cmd;
 	char	*path;
 	char	**args;
 
 	n_arg = 1;
-	cmd = ft_split(full_cmd, ' ');
-	while (cmd[n_arg])
+	args = ft_split(full_cmd, ' ');
+	while (args[n_arg])
 		n_arg++;
-	path = get_path(cmd[0], envp);
+	path = get_path(args[0], envp);
 	if (path == NULL)
 		ft_perror("pipex");
-	args = get_args(cmd);
-	cmd[0] = ft_strdup(path);
-	if (path != NULL)
-		execve(path, args, envp);
-	return (cmd);
+	execve(path, args, envp);
+	return (0);
 }
