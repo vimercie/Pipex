@@ -32,7 +32,7 @@ typedef struct s_pipe
 	int	n_cmd;
 }				t_pipe;
 
-int		*parsing(int argc, char *argv[]);
+int		parsing(t_pipe *p, int argc, char *argv[]);
 int		ft_perror(char *s);
 int		pipe_init(int argc, char *argv[], char *envp[], t_pipe p);
 int		exec_cmd(char *full_cmd, char *envp[]);

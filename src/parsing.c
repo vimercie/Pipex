@@ -18,37 +18,19 @@ int	ft_perror(char *s)
 	exit(1);
 }
 
-int	*file_parsing(int argc, char *argv[])
+void	file_parsing(t_pipe *p, int argc, char *argv[])
 {
-	int	*file_fd;
-
-	file_fd = ft_calloc(2, sizeof(int));
-	// tests outfile
-	if (access(argv[argc - 1], F_OK) != 0)
-		file_fd[0] = open(argv[argc - 1], O_RDWR | O_CREAT | O_TRUNC, 0644);
-	else
-	{
-		if (access(argv[argc - 1], W_OK) == 0)
-			file_fd[0] = open(argv[argc - 1], O_WRONLY);
-		else
-			ft_perror(argv[argc - 1]);
-	}
-	// tests infile
-	if (access(argv[1], F_OK) != 0)
-		ft_perror(argv[1]);
+	p->fd_outfile = open(argv[argc - 1], O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (access(argv[1], R_OK) == 0)
-		file_fd[1] = open(argv[1], O_RDONLY);
+		p->fd_infile = open(argv[1], O_RDONLY);
 	else
 		ft_perror(argv[1]);
-	return (file_fd);
 }
 
-int	*parsing(int argc, char **argv)
+int	parsing(t_pipe *p, int argc, char **argv)
 {
-	int	*file_fd;
-
 	if (argc < 5)
-		return (NULL);
-	file_fd = file_parsing(argc, argv);
-	return (file_fd);
+		return (-1);
+	file_parsing(p, argc, argv);
+	return (1);
 }

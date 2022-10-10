@@ -15,12 +15,7 @@
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_pipe	p;
-	int		*file_fd;
 
-	file_fd = parsing(argc, argv);
-	if (file_fd == NULL)
-		return (0);
-	p.fd_infile = file_fd[0];
-	p.fd_outfile = file_fd[1];
+	parsing(&p, argc, argv);
 	pipe_init(argc, argv, envp, p);
 }

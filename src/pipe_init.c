@@ -16,7 +16,6 @@
 int	pipe_init(int argc, char *argv[], char *envp[], t_pipe p)
 {
 	int		fd[2];
-	// char	**cmd;
 
 	p.n_cmd = 1;
 	if (argc == 5)
@@ -26,18 +25,20 @@ int	pipe_init(int argc, char *argv[], char *envp[], t_pipe p)
 		if (p.id1 == 0)
 		{
 			dup2(fd[1], 1);
-			dup2(p.fd_infile, 0);
 			close(fd[0]);
 			close(fd[1]);
+			dup2(p.fd_infile, 0);
+			close(p.fd_infile);
 			exec_cmd(argv[2], envp);
 		}
 		p.id2 = fork();
-		if(p.id2 == 0)
+		if (p.id2 == 0)
 		{
-			dup2(fd[0], 0);
-			dup2(p.fd_outfile, 1);
-			close(fd[0]);
 			close(fd[1]);
+			dup2(fd[0], 0);
+			close(fd[0]);
+			dup2(p.fd_outfile, 1);
+			close(p.fd_outfile);
 			exec_cmd(argv[3], envp);
 		}
 		close(fd[0]);
