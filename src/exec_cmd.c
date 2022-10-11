@@ -35,6 +35,7 @@ char	*get_path(char *cmd, char *envp[])
 		i++;
 	path_array = ft_split(envp[i], ':');
 	path_start = ft_substr(path_array[0], 5, ft_strlen(path_array[0]));
+	free(path_array[0]);
 	path_array[0] = ft_strdup(path_start);
 	free(path_start);
 	i = 0;
@@ -46,7 +47,7 @@ char	*get_path(char *cmd, char *envp[])
 		path = gather_full_path(path_array[i], cmd);
 	}
 	if (!path_array[i])
-		path = gather_full_path(path_array[i], cmd);
+		path = NULL;
 	return (path);
 }
 
@@ -59,10 +60,8 @@ int	exec_cmd(char *full_cmd, char *envp[])
 	path = get_path(args[0], envp);
 	if (path == NULL)
 	{
-		write(2, "pipex: ", 7);
-		write(2, args[0], ft_strlen(args[0]));
-		write(2, ": command not found\n", 20);
-		exit(10);
+		free(args);
+		return (-1);
 	}
 	execve(path, args, envp);
 	return (0);

@@ -12,19 +12,26 @@
 
 #include "../inc/pipex.h"
 
-int	ft_perror(char *s)
+int	perror_exit(int errnum, char *prog_name, char *cmd)
 {
-	perror(s);
-	exit(1);
+	write(2, prog_name, ft_strlen(prog_name));
+	write(2, ": ", 2);
+	write(2, strerror(errnum), ft_strlen(strerror(errnum)));
+	write(2, ": ", 2);
+	write(2, cmd, ft_strlen(cmd));
+	exit(errnum);
 }
 
 void	file_parsing(t_pipe *p, int argc, char *argv[])
 {
-	p->fd_outfile = open(argv[argc - 1], O_RDWR | O_CREAT | O_TRUNC, 0644);
-	if (access(argv[1], R_OK) == 0)
-		p->fd_infile = open(argv[1], O_RDONLY);
+	if (access(argv[1], R_OK) != 0)
+		perror_exit(13, argv[0], argv[1]);
 	else
-		ft_perror(argv[1]);
+		p->fd_infile = open(argv[1], O_RDONLY);
+	if (access(argv[argc - 1], W_OK) != 0 && access(argv[argc - 1], F_OK) == 0)
+		perror_exit(13, argv[0], argv[argc - 1]);
+	else
+		p->fd_outfile = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 }
 
 int	parsing(t_pipe *p, int argc, char **argv)

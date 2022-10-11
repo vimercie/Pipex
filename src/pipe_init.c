@@ -29,7 +29,8 @@ int	pipe_init(int argc, char *argv[], char *envp[], t_pipe p)
 			close(fd[1]);
 			dup2(p.fd_infile, 0);
 			close(p.fd_infile);
-			exec_cmd(argv[2], envp);
+			if (exec_cmd(argv[2], envp) == -1)
+				perror_exit(127, argv[0], argv[2]);
 		}
 		p.id2 = fork();
 		if (p.id2 == 0)
