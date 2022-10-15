@@ -16,7 +16,10 @@ int	perror_exit(int errnum, char *prog_name, char *cmd)
 {
 	write(2, prog_name, ft_strlen(prog_name));
 	write(2, ": ", 2);
-	write(2, strerror(errnum), ft_strlen(strerror(errnum)));
+	if (errnum == 127)
+		write(2, "command not found", 17);
+	else
+		write(2, strerror(errnum), ft_strlen(strerror(errnum)));
 	write(2, ": ", 2);
 	write(2, cmd, ft_strlen(cmd));
 	exit(errnum);

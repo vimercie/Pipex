@@ -57,7 +57,15 @@ int	exec_cmd(char *full_cmd, char *envp[])
 	char	**args;
 
 	args = ft_split(full_cmd, ' ');
-	path = get_path(args[0], envp);
+	if (args[0][0] == '/')
+	{
+		if (access(args[0], X_OK) == 0)
+			path = args[0];
+		else
+			path = NULL;
+	}
+	else
+		path = get_path(args[0], envp);
 	if (path == NULL)
 	{
 		free(args);

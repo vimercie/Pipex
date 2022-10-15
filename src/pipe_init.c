@@ -40,7 +40,8 @@ int	pipe_init(int argc, char *argv[], char *envp[], t_pipe p)
 			close(fd[0]);
 			dup2(p.fd_outfile, 1);
 			close(p.fd_outfile);
-			exec_cmd(argv[3], envp);
+			if (exec_cmd(argv[3], envp) == -1)
+				perror_exit(127, argv[0], argv[3]);
 		}
 		close(fd[0]);
 		close(fd[1]);
