@@ -67,10 +67,7 @@ int	exec_cmd(char *full_cmd, char *envp[])
 	else
 		path = get_path(args[0], envp);
 	if (path == NULL)
-	{
-		free(args);
-		return (-1);
-	}
+		perror_exit(127, "pipex", args[0]);
 	execve(path, args, envp);
 	return (0);
 }
