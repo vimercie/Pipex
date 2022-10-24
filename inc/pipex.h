@@ -24,17 +24,23 @@
 
 typedef struct s_pipe
 {
-	// char	**cmd;
-	int fd_infile;
-	int fd_outfile;
-	int	id1;
-	int	id2;
-	int	n_cmd;
+	char	*prog_name;
+	char	*err_cmd;
+	int		fd_infile;
+	int		fd_outfile;
+	int		id1;
+	int		id2;
 }				t_pipe;
 
-int		pipe_init(int argc, char *argv[], char *envp[], t_pipe p);
-int		exec_cmd(char *full_cmd, char *envp[]);
+// piping
+int		pipe_init(t_pipe *p, int argc, char *argv[], char *envp[]);
+
+// cmd
+int		exec_cmd(t_pipe *p, char *full_cmd, char *envp[]);
+
+// parsing
 int		parsing(t_pipe *p, int argc, char *argv[]);
-int		perror_exit(int errnum, char *prog_name, char *cmd);
+int		perror_exit(t_pipe *p, int errnum, char *cmd);
+void	free_tab(char **tab);
 
 #endif

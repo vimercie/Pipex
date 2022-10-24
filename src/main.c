@@ -17,5 +17,5 @@ int	main(int argc, char *argv[], char *envp[])
 	t_pipe	p;
 
 	parsing(&p, argc, argv);
-	pipe_init(argc, argv, envp, p);
+	pipe_init(&p, argc, argv, envp);
 }

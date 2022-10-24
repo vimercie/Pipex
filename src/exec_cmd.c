@@ -51,23 +51,35 @@ char	*get_path(char *cmd, char *envp[])
 	return (path);
 }
 
-int	exec_cmd(char *full_cmd, char *envp[])
+int	exec_cmd(t_pipe *p, char *full_cmd, char *envp[])
 {
 	char	*path;
 	char	**args;
+	int		i;
 
+	i = 0;
+	if (!full_cmd[0])
+		perror_exit(p, 13, full_cmd);
+	path = NULL;
 	args = ft_split(full_cmd, ' ');
+	p->err_cmd = ft_strdup(args[0]);
 	if (args[0][0] == '/')
 	{
 		if (access(args[0], X_OK) == 0)
-			path = args[0];
+			path = ft_strdup(args[0]);
 		else
-			path = NULL;
+		{
+			free_tab(args);
+			perror_exit(p, 2, p->err_cmd);
+		}
 	}
 	else
 		path = get_path(args[0], envp);
 	if (path == NULL)
-		perror_exit(127, "pipex", args[0]);
+	{
+		free_tab(args);
+		perror_exit(p, 127, p->err_cmd);
+	}
 	execve(path, args, envp);
 	return (0);
 }
