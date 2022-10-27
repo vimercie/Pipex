@@ -12,6 +12,13 @@
 
 #include "../inc/pipex.h"
 
+void	free_perror(t_pipe *p, int errnum, char **args)
+{
+	free_tab(args);
+	perror_exit(p, errnum, p->err_cmd);
+	return ;
+}
+
 char	*gather_full_path(char *path, char *cmd)
 {
 	char	*path_slash;
@@ -68,18 +75,12 @@ int	exec_cmd(t_pipe *p, char *full_cmd, char *envp[])
 		if (access(args[0], X_OK) == 0)
 			path = ft_strdup(args[0]);
 		else
-		{
-			free_tab(args);
-			perror_exit(p, 2, p->err_cmd);
-		}
+			free_perror(p, 2, args);
 	}
 	else
 		path = get_path(args[0], envp);
 	if (path == NULL)
-	{
-		free_tab(args);
-		perror_exit(p, 127, p->err_cmd);
-	}
+		free_perror(p, 127, args);
 	execve(path, args, envp);
 	return (0);
 }

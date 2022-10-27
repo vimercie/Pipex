@@ -51,18 +51,18 @@ int	perror_exit(t_pipe *p, int errnum, char *cmd)
 
 void	file_parsing(t_pipe *p, char *argv[])
 {
-	if (!argv[1][0] || access(argv[1], F_OK) != 0)
-		perror_exit(p, 2, argv[1]);
-	else if (access(argv[1], R_OK) != 0)
-		perror_exit(p, 13, argv[1]);
-	else
-		p->fd_infile = open(argv[1], O_RDONLY);
 	if (!argv[4][0])
 		perror_exit(p, 2, argv[4]);
 	else if (access(argv[4], F_OK) == 0 && access(argv[4], W_OK) != 0)
 		perror_exit(p, 13, argv[4]);
 	else
 		p->fd_outfile = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	if (!argv[1][0] || access(argv[1], F_OK) != 0)
+		perror_exit(p, 2, argv[1]);
+	else if (access(argv[1], R_OK) != 0)
+		perror_exit(p, 13, argv[1]);
+	else
+		p->fd_infile = open(argv[1], O_RDONLY);
 }
 
 int	parsing(t_pipe *p, int argc, char **argv)
